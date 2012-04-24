@@ -4,8 +4,8 @@ require File.expand_path('../lib/method_decorators/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Michael Fairley"]
   gem.email         = ["michaelfairley@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Python's function decorators for Ruby}
+  gem.summary       = %q{Python's function decorators for Ruby}
   gem.homepage      = "http://github.com/michaelfairley/method_decorators"
 
   gem.files         = `git ls-files`.split($\)
