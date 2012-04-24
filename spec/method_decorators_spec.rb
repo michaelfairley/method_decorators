@@ -65,7 +65,7 @@ describe MethodDecorators do
       end
 
       it "works" do
-        subject.protected_methods.should include :three
+        subject.protected_methods.map(&:to_s).should include 'three'
         subject.send(:three).should == '3'
       end
     end
@@ -82,7 +82,7 @@ describe MethodDecorators do
       end
 
       it "works" do
-        subject.private_methods.should include :three
+        subject.private_methods.map(&:to_s).should include 'three'
         subject.send(:three).should == '3'
       end
     end
@@ -137,7 +137,6 @@ describe MethodDecorators do
       let(:klass) do
         Class.new Base do
           +Reverse
-          +Stringify
           def echo(a, b)
             [a, b]
           end
@@ -145,7 +144,7 @@ describe MethodDecorators do
       end
 
       it "works" do
-        subject.echo(1, 2).should == "[2, 1]"
+        subject.echo(1, 2).should == [2, 1]
       end
     end
   end
@@ -180,7 +179,7 @@ describe MethodDecorators do
       end
 
       it "works" do
-        subject.private_methods.should include :three
+        subject.private_methods.map(&:to_s).should include 'three'
         subject.send(:three).should == '3'
       end
     end
@@ -235,7 +234,6 @@ describe MethodDecorators do
       let(:klass) do
         Class.new Base do
           +Reverse
-          +Stringify
           def self.echo(a, b)
             [a, b]
           end
@@ -243,7 +241,7 @@ describe MethodDecorators do
       end
 
       it "works" do
-        subject.echo(1, 2).should == "[2, 1]"
+        subject.echo(1, 2).should == [2, 1]
       end
     end
   end
