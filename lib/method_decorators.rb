@@ -14,9 +14,8 @@ module MethodDecorators
     return  if decorators.empty?
 
     define_method(name) do |*args, &blk|
-      decorators.reduce(orig_method.bind(self)) do |callable, decorator|
-        lambda{|*a, &b| decorator.call(callable, *a, &b) }
-      end.call(*args, &blk)
+      decorated = MethodDecorators.decorate_callable(orig_method.bind(self), decorators)
+      decorated.call(*args, &blk)
     end
 
     case visibility
@@ -33,9 +32,14 @@ module MethodDecorators
     return  if decorators.empty?
 
     MethodDecorators.define_others_singleton_method(self, name) do |*args, &blk|
-      decorators.reduce(orig_method) do |callable, decorator|
-        lambda{|*a, &b| decorator.call(callable, *a, &b) }
-      end.call(*args, &blk)
+      decorated = MethodDecorators.decorate_callable(orig_method, decorators)
+      decorated.call(*args, &blk)
+    end
+  end
+
+  def self.decorate_callable(callable, decorators)
+    decorators.reduce(callable) do |callable, decorator|
+      lambda{|*a, &b| decorator.call(callable, *a, &b) }
     end
   end
 
