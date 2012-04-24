@@ -36,3 +36,6 @@ class Transactional < MethodDecorator
   end
 end
 ```
+
+## License
+MethodDecorators is available under the MIT license and is freely available for all use, including personal, commercial, and academic. See LICENSE for details.
