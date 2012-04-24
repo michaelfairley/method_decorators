@@ -32,10 +32,20 @@ module MethodDecorators
     decorators = MethodDecorator.current_decorators
     return  if decorators.empty?
 
-    define_singleton_method(name) do |*args, &blk|
+    MethodDecorators.define_others_singleton_method(self, name) do |*args, &blk|
       decorators.reduce(orig_method) do |callable, decorator|
         lambda{|*a, &b| decorator.call(callable, *a, &b) }
       end.call(*args, &blk)
+    end
+  end
+
+  def self.define_others_singleton_method(klass, name, &blk)
+    if klass.respond_to?(:define_singleton_method)
+      klass.define_singleton_method(name, &blk)
+    else
+      class << klass
+        self
+      end.send(:define_method, name, &blk)
     end
   end
 end
