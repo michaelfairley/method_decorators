@@ -5,13 +5,13 @@ module MethodDecorators
     super
     orig_method = instance_method(name)
 
+    decorators = MethodDecorator.current_decorators
+    return  if decorators.empty?
+
     if    private_method_defined?(name);   visibility = :private
     elsif protected_method_defined?(name); visibility = :protected
     else                                   visibility = :public
     end
-
-    decorators = MethodDecorator.current_decorators
-    return  if decorators.empty?
 
     define_method(name) do |*args, &blk|
       decorated = MethodDecorators.decorate_callable(orig_method.bind(self), decorators)
