@@ -1,5 +1,5 @@
 require 'method_decorators'
-Dir[File.dirname(__FILE__) + '/../lib/decorators/*.rb'].each {|file| require file }
+require 'method_decorators/decorators'
 
 require 'support/stringify'
 require 'support/add_n'
