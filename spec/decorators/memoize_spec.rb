@@ -1,36 +1,25 @@
 require 'spec_helper'
 
-class Base
-  extend MethodDecorators
-end
-
 describe Memoize do
-  subject { klass.new }
+  let(:method) { mock(:method, call: :calculation) }
+  subject { Memoize.new }
 
-  describe "decorating with a simple decorator" do
-    let(:klass) do
-      Class.new Base do
-        +Memoize
-        def foo(bar)
-          baz(bar)
-        end
-
-        def baz(bat)
-          bat
-        end
-      end
-    end
-
+  describe "memoization" do
     it "calculates the value the first time the arguments are supplied" do
-      subject.should_receive(:baz)
-      subject.foo(1)
+      method.should_receive(:call)
+      subject.call(method, 10)
     end
 
-    it "memoizes the return value and skips calculation" do
-      subject.foo(1)
-      subject.should_not_receive(:baz)
-      subject.foo(1).should eq 1
+    it "stores the value of the method call" do
+      method.stub(:call).and_return(:foo, :bar)
+      subject.call(method, 10).should eq :foo
+      subject.call(method, 10).should eq :foo
     end
 
+    it "memoizes the return value and skips the call the second time" do
+      subject.call(method, 10)
+      method.should_not_receive(:call)
+      subject.call(method, 10)
+    end
   end
 end
