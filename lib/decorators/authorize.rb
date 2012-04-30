@@ -9,6 +9,8 @@ class Authorize < MethodDecorator
     orig.call(*args, &blk) if authorized?(orig.receiver, *args)
   end
 
+  private
+
   def authorized?(context, *args)
     return false if auth.nil?
     context.instance_exec(*args, &auth)
