@@ -1,5 +1,5 @@
 class Retry < MethodDecorator
-  DEFAULTS = { tries: 2, delay: 1, backoff: 1 }.freeze
+  DEFAULTS = {:tries => 2, :delay => 1, :backoff => 1 }.freeze
 
   attr_accessor :tries, :delay, :backoff
   attr_accessor :remaining, :result, :til_next
