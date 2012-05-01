@@ -1,9 +1,5 @@
 require 'spec_helper'
 
-class Base
-  extend MethodDecorators
-end
-
 describe MethodDecorators do
   subject { klass.new }
 
