@@ -1,4 +1,5 @@
 require 'method_decorators'
+require 'method_decorators/decorators'
 
 require 'support/stringify'
 require 'support/add_n'
