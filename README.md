@@ -38,6 +38,14 @@ class ExternalService
 end
 ```
 
+### Included decorators
+
+Include these with `require 'method_decorators/decorators/name_of_decorator'`, or all at once with `require 'method_decorators/decorators'`.
+
+- Memoize - caches the result of the method for each arg combination it's called with
+- Retry - retries the method up to n (passed in to the constructor) times if the method errors
+- Precondition - raises an error if the precondition (passed as a block) is not met
+
 ### Defining a decorator
 
 ```ruby
