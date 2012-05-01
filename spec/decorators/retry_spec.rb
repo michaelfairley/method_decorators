@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'method_decorators/decorators/retry'
 
 describe Retry do
   let(:options) { { tries: 2 } }

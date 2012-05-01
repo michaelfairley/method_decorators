@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'method_decorators/decorators/authorize'
 
 describe Authorize do
   let(:receiver) { mock(:receiver) }

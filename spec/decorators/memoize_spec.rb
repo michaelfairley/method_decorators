@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'method_decorators/decorators/memoize'
 
 describe Memoize do
   let(:method) { mock(:method, call: :calculation) }
