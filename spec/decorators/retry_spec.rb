@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'method_decorators/decorators/retry'
 
 describe Retry do
-  let(:options) { { tries: 2 } }
-  let(:method) { mock(:method, call: false) }
+  let(:options) { {:tries => 2 } }
+  let(:method) { mock(:method, :call => false) }
   subject { Retry.new(options) }
 
   describe "default options" do
@@ -30,7 +30,7 @@ describe Retry do
   end
 
   describe "#wait" do
-    let(:options) { { tries: 4, delay: 1, backoff: 2 } }
+    let(:options) { {:tries => 4, :delay => 1, :backoff => 2} }
 
     it "waits for the specified delay on failure" do
       subject.should_receive(:sleep).at_least(1).times

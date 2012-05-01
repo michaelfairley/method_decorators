@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'method_decorators/decorators/memoize'
 
 describe Memoize do
-  let(:method) { mock(:method, call: :calculation) }
+  let(:method) { mock(:method, :call => :calculation) }
   subject { Memoize.new }
 
   describe "memoization" do

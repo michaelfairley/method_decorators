@@ -3,7 +3,7 @@ require 'method_decorators/decorators/authorize'
 
 describe Authorize do
   let(:receiver) { mock(:receiver) }
-  let(:method) { mock(:method, call: :secret, receiver: receiver) }
+  let(:method) { mock(:method, :call => :secret, :receiver => receiver) }
   let(:block) { proc { |arg| true } }
   subject { Authorize.with(&block) }
 
