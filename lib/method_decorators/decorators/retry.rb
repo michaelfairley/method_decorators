@@ -3,7 +3,7 @@ class Retry < MethodDecorator
     @max = max
   end
 
-  def call(orig, *args, &blk)
+  def call(orig, this, *args, &blk)
     attempts = 0
     begin
       attempts += 1

@@ -10,12 +10,12 @@ describe Retry do
       method.stub(:call){ raise }
 
       method.should_receive(:call).exactly(3).times
-      expect{ subject.call(method) }.to raise_error
+      expect{ subject.call(method, nil) }.to raise_error
     end
 
     it "does not retry the method if it succeeds" do
       method.should_receive(:call).once.and_return(3)
-      subject.call(method).should == 3
+      subject.call(method, nil).should == 3
     end
   end
 

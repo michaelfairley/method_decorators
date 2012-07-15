@@ -1,11 +1,11 @@
 class Memoize < MethodDecorator
-  def initialize
-    @cache ||= {}
-    super
+  def call(orig, this, *args, &blk)
+    return cache(this)[args] if cache(this).has_key?(args)
+    cache(this)[args] = orig.call(*args, &blk)
   end
 
-  def call(orig, *args, &blk)
-    return @cache[args] if @cache.has_key?(args)
-    @cache[args] = orig.call(*args, &blk)
+private
+  def cache(this)
+    this.instance_variable_get("@_memoize_cache") || this.instance_variable_set("@_memoize_cache", {})
   end
 end

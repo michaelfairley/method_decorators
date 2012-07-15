@@ -3,7 +3,7 @@ class AddN < MethodDecorator
     @n = n
   end
 
-  def call(orig, *args, &blk)
+  def call(orig, this, *args, &blk)
     orig.call(*args, &blk) + @n
   end
 end

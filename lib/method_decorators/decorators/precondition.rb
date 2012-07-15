@@ -3,8 +3,8 @@ class Precondition < MethodDecorator
     @block = blk
   end
 
-  def call(orig, *args, &blk)
-    unless passes?(orig.receiver, *args)
+  def call(orig, this, *args, &blk)
+    unless passes?(this, *args)
       raise ArgumentError, "failed precondition"
     end
     orig.call(*args, &blk)

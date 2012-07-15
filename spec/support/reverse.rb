@@ -1,5 +1,5 @@
 class Reverse < MethodDecorator
-  def call(orig, *args, &blk)
+  def call(orig, this, *args, &blk)
     orig.call(*args.reverse, &blk)
   end
 end

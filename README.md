@@ -50,7 +50,7 @@ Include these with `require 'method_decorators/decorators/name_of_decorator'`, o
 
 ```ruby
 class Transactional < MethodDecorator
-  def call(wrapped, *args, &blk)
+  def call(wrapped, this, *args, &blk)
     ActiveRecord::Base.transaction do
       wrapped.call(*args, &blk)
     end

@@ -39,7 +39,7 @@ module MethodDecorators
 
   def self.decorate_callable(orig, decorators)
     decorators.reduce(orig) do |callable, decorator|
-      lambda{ |*a, &b| decorator.call(callable, *a, &b) }
+      lambda{ |*a, &b| decorator.call(callable, orig.receiver, *a, &b) }
     end
   end
 
