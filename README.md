@@ -38,7 +38,7 @@ class ExternalService
 end
 ```
 
-You can also set multiple decorators for your methods.
+You can also set multiple decorators for your methods. Each decorator executes within the previously declared decorator. i.e. they are nested, as expected to be.
 
 ```ruby
 class ExternalService
