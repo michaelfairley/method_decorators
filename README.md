@@ -38,12 +38,27 @@ class ExternalService
 end
 ```
 
+You can also set multiple decorators for your methods.
+
+```ruby
+class ExternalService
+  extend MethodDecorators
+
+  +Retry.new(3)
+  +Within.new(2)
+  def request
+    ...
+  end
+end
+```
+
 ### Included decorators
 
 Include these with `require 'method_decorators/decorators/name_of_decorator'`, or all at once with `require 'method_decorators/decorators'`.
 
 - Memoize - caches the result of the method for each arg combination it's called with
 - Retry - retries the method up to n (passed in to the constructor) times if the method errors
+- Within - times outs if a request doesn't complete within n seconds
 - Precondition - raises an error if the precondition (passed as a block) is not met
 
 ### Defining a decorator
