@@ -8,7 +8,7 @@ Python's function decorators for Ruby.
 ## Usage
 
 ### Using a decorator
-Extend MethodDecorators in a class where you want to use them, and then stick `+DecoratorName` before your method declaration to use it.
+Extend MethodDecorators in a class where you want to use them, and then stick `+DecoratorName` before your method declaration to decorate the method.
 
 ```ruby
 class Math
@@ -45,7 +45,7 @@ class ExternalService
   extend MethodDecorators
 
   +Retry.new(3)
-  +Within.new(2)
+  +Within.new(2.seconds)
   def request
     ...
   end
