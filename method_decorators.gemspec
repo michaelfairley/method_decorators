@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/method_decorators/version', __FILE__)
+lib_dir = File.expand_path('lib', File.dirname(__FILE__))
+$LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
+require 'method_decorators/version'
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Michael Fairley"]
