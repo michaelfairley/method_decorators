@@ -1,4 +1,4 @@
-class AddN < MethodDecorator
+class AddN < MethodDecorators::Decorator
   def initialize(n)
     @n = n
   end

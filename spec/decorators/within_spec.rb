@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'method_decorators/decorators/within'
+require 'method_decorators/within'
 
-describe Within do
+describe MethodDecorators::Within do
   let(:method) { double(:method, :call => false) }
-  subject { Within.new(2) }
+  subject { MethodDecorators::Within.new(2) }
 
   describe "#call" do
     it "raises when the timeout seconds have elapsed" do
@@ -20,7 +20,7 @@ describe Within do
   describe "acceptance" do
     let(:klass) do
       Class.new Base do
-        +Within.new(2)
+        +MethodDecorators::Within.new(2)
         def do_it(execution_period)
           sleep(execution_period)
         end

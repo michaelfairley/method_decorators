@@ -14,7 +14,7 @@ Extend MethodDecorators in a class where you want to use them, and then stick `+
 class Math
   extend MethodDecorators
 
-  +Memoized
+  +MethodDecorators::Memoized
   def fib(n)
     if n <= 1
       1
@@ -31,7 +31,7 @@ You can also decorate with an instance of a decorator, rather than the class. Th
 class ExternalService
   extend MethodDecorators
 
-  +Retry.new(3)
+  +MethodDecorators::Retry.new(3)
   def request
     ...
   end
@@ -44,8 +44,8 @@ You can also set multiple decorators for your methods. Each decorator executes w
 class ExternalService
   extend MethodDecorators
 
-  +Retry.new(3)
-  +Within.new(2.seconds)
+  +MethodDecorators::Retry.new(3)
+  +MethodDecorators::Within.new(2.seconds)
   def request
     ...
   end
@@ -54,7 +54,7 @@ end
 
 ### Included decorators
 
-Include these with `require 'method_decorators/decorators/name_of_decorator'`, or all at once with `require 'method_decorators/decorators'`.
+Include these with `require 'method_decorators/name_of_decorator'`, or all at once with `require 'method_decorators/all'`.
 
 - Memoize - caches the result of the method for each arg combination it's called with
 - Retry - retries the method up to n (passed in to the constructor) times if the method errors

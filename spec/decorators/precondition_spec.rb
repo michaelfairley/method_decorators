@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'method_decorators/decorators/precondition'
+require 'method_decorators/precondition'
 
-describe Precondition do
+describe MethodDecorators::Precondition do
   let(:receiver) { double(:receiver) }
   let(:method) { double(:method, :call => :secret, :receiver => receiver) }
   let(:block) { proc { |arg| true } }
-  subject { Precondition.new(&block) }
+  subject { MethodDecorators::Precondition.new(&block) }
 
   describe "#call" do
     it "raises when the precondition fails" do
@@ -26,13 +26,13 @@ describe Precondition do
           @x = x
         end
 
-        +Precondition.new{ |a| a + @x < 10 }
+        +MethodDecorators::Precondition.new{ |a| a + @x < 10 }
         def multiply(a)
 	  a * @x
         end
 
-        +Precondition.new{ |a| a + @x == 10 }
-        +Precondition.new{ |a| a * @x == 21 }
+        +MethodDecorators::Precondition.new{ |a| a + @x == 10 }
+        +MethodDecorators::Precondition.new{ |a| a * @x == 21 }
         def concat(a)
           "#{@x}#{a}"
         end

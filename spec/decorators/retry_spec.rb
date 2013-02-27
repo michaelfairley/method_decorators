@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'method_decorators/decorators/retry'
+require 'method_decorators/retry'
 
-describe Retry do
+describe MethodDecorators::Retry do
   let(:method) { double(:method, :call => false) }
-  subject { Retry.new(3) }
+  subject { MethodDecorators::Retry.new(3) }
 
   describe "#call" do
     it "executes the method again if the first time failed " do
@@ -22,7 +22,7 @@ describe Retry do
   describe "acceptance" do
     let(:klass) do
       Class.new Base do
-        +Retry.new(3)
+        +MethodDecorators::Retry.new(3)
         def do_it(magic_number)
           @times ||= 0
           @times += 1

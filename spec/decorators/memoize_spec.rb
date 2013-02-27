@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'method_decorators/decorators/memoize'
+require 'method_decorators/memoize'
 
-describe Memoize do
+describe MethodDecorators::Memoize do
   describe "#call" do
     let(:method) { double(:method, :call => :calculation) }
     let(:this) { Object.new }
-    subject { Memoize.new }
+    subject { MethodDecorators::Memoize.new }
 
     it "calculates the value the first time the arguments are supplied" do
       method.should_receive(:call)
@@ -37,7 +37,7 @@ describe Memoize do
   describe "acceptance" do
     let(:klass) do
       Class.new Base do
-        +Memoize
+        +MethodDecorators::Memoize
         def count
           @count ||= 0
           @count += 1

@@ -1,11 +1,12 @@
 require "method_decorators/version"
+require "method_decorators/decorator"
 
 module MethodDecorators
   def method_added(name)
     super
     orig_method = instance_method(name)
 
-    decorators = MethodDecorator.current_decorators
+    decorators = Decorator.current_decorators
     return  if decorators.empty?
 
     if    private_method_defined?(name);   visibility = :private
@@ -28,7 +29,7 @@ module MethodDecorators
     super
     orig_method = method(name)
 
-    decorators = MethodDecorator.current_decorators
+    decorators = Decorator.current_decorators
     return  if decorators.empty?
 
     MethodDecorators.define_others_singleton_method(self, name) do |*args, &blk|
@@ -51,23 +52,5 @@ module MethodDecorators
         self
       end.send(:define_method, name, &blk)
     end
-  end
-end
-
-class MethodDecorator
-  @@current_decorators = []
-
-  def self.current_decorators
-    decs = @@current_decorators
-    @@current_decorators = []
-    decs
-  end
-
-  def self.+@
-    +new
-  end
-
-  def +@
-    @@current_decorators.unshift(self)
   end
 end
