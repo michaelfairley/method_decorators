@@ -1,3 +1,4 @@
+require "method_decorators"
 require 'timeout'
 
 module MethodDecorators

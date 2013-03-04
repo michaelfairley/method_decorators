@@ -1,3 +1,5 @@
+require "method_decorators"
+
 module MethodDecorators
   class Retry < Decorator
     def initialize(max)

@@ -1,3 +1,5 @@
+require "method_decorators"
+
 module MethodDecorators
   class Memoize < Decorator
     def call(orig, this, *args, &blk)
