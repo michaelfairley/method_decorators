@@ -37,7 +37,7 @@ describe MethodDecorators::Obsolete do
     end
 
     context 'when object which has #call method given on initializing' do
-      subject { MethodDecorators::Obsolete.new(->(klass, method) { "#{klass}##{method}" }) }
+      subject { MethodDecorators::Obsolete.new(lambda { |klass, method| "#{klass}##{method}" }) }
 
       it 'warns with message formatted by the object' do
         subject.should_receive(:warn).with('NilClass#obsolete_method')
@@ -100,7 +100,7 @@ describe MethodDecorators::Obsolete do
     context 'when object witch has #call method givn on initializing' do
       let(:klass) {
         Class.new Base do
-          +MethodDecorators::Obsolete.new(->(class_name, method_name) {"#{class_name}##{method_name} is obsolete"})
+          +MethodDecorators::Obsolete.new(lambda { |class_name, method_name| "#{class_name}##{method_name} is obsolete" })
           def obsolete_method
             'return value of original method'
           end

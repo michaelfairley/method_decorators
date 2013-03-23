@@ -65,7 +65,7 @@ module MethodDecorators
   class Obsolete < Decorator
     def initialize(message=nil, &blk)
       @message = message || blk ||
-        ->(class_name, method_name) {"#{class_name}##{method_name} is obsolete"}
+        lambda { |class_name, method_name| "#{class_name}##{method_name} is obsolete" }
     end
 
     def call(orig, this, *args, &blk)
