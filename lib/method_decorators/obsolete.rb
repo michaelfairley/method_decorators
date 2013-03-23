@@ -63,9 +63,9 @@ module MethodDecorators
   #   "MyClass#obsolete_method will be removed in the future. Use MyClass#brand_new_method instead"
   # You can give any object which responds to method "call" like Proc.
   class Obsolete < Decorator
+    DEFAULT_FORMATTER = lambda {|class_name, method_name| "#{class_name}##{method_name} is obsolete"}
     def initialize(message=nil, &blk)
-      @message = message || blk ||
-        lambda { |class_name, method_name| "#{class_name}##{method_name} is obsolete" }
+      @message = message || blk || DEFAULT_FORMATTER
     end
 
     def call(orig, this, *args, &blk)
