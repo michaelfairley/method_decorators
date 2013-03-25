@@ -9,7 +9,9 @@ module MethodDecorators
 
     private
     def cache(this)
-      this.instance_variable_get("@_memoize_cache") || this.instance_variable_set("@_memoize_cache", {})
+      this.instance_eval do
+        return @_memoize_cache ||= {}
+      end
     end
   end
 end
