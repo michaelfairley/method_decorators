@@ -28,7 +28,7 @@ describe MethodDecorators::Precondition do
 
         +MethodDecorators::Precondition.new{ |a| a + @x < 10 }
         def multiply(a)
-	  a * @x
+          a * @x
         end
 
         +MethodDecorators::Precondition.new{ |a| a + @x == 10 }
