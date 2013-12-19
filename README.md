@@ -11,11 +11,13 @@ Python's function decorators for Ruby.
 Extend MethodDecorators in a class where you want to use them, and then stick `+DecoratorName` before your method declaration to decorate the method.
 
 ```ruby
-class Math
+require "method_decorators/memoize"
+
+class MyMath
   extend MethodDecorators
 
-  +MethodDecorators::Memoized
-  def fib(n)
+  +MethodDecorators::Memoize
+  def self.fib(n)
     if n <= 1
       1
     else
@@ -23,6 +25,8 @@ class Math
     end
   end
 end
+
+puts MyMath.fib(200)
 ```
 
 You can also decorate with an instance of a decorator, rather than the class. This is useful for configuring specific options for the decorator.
