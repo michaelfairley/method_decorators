@@ -43,6 +43,16 @@ describe MethodDecorators::Memoize do
           @count += 1
           rand
         end
+
+        +MethodDecorators::Memoize
+        def zero
+          0
+        end
+
+        +MethodDecorators::Memoize
+        def one
+          1
+        end
       end
     end
     subject { klass.new }
@@ -52,6 +62,11 @@ describe MethodDecorators::Memoize do
       subject.count.should == x
       #subject.count.should == 1
       #subject.count.should == 1
+    end
+
+    it "memoizes call to different methods separately" do
+      subject.zero.should eql 0
+      subject.one.should eql 1
     end
 
     context "with two instances of the decorated class" do

@@ -96,7 +96,7 @@ describe MethodDecorators do
 
       it "works" do
         subject.six.should == '6'
-      end    
+      end
     end
 
     describe "that takes args" do
@@ -193,7 +193,7 @@ describe MethodDecorators do
 
       it "works" do
         subject.six.should == '6'
-      end    
+      end
     end
 
     describe "that takes args" do
