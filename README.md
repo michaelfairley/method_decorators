@@ -2,6 +2,8 @@
 
 Python's function decorators for Ruby.
 
+I probably wouldn't use this in production.
+
 ## Installation
 `gem install method_decorators`
 
