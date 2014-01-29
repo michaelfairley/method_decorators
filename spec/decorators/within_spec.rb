@@ -13,7 +13,7 @@ describe MethodDecorators::Within do
 
     it "does not raise when the method has finished execution before timeout" do
       method.stub(:call){ sleep 1 }
-      expect{ subject.call(method, nil) }.to_not raise_error(Timeout::Error)
+      expect{ subject.call(method, nil) }.to_not raise_error
     end
   end
 
@@ -36,7 +36,7 @@ describe MethodDecorators::Within do
 
     context "with shorter execution period" do
       it "finishes within the timeout period" do
-        expect{ subject.do_it(1) }.to_not raise_error(Timeout::Error)
+        expect{ subject.do_it(1) }.to_not raise_error
       end
     end
   end
