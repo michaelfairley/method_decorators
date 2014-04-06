@@ -53,6 +53,10 @@ describe MethodDecorators::Deprecated do
       $stderr.rewind
     end
 
+    after do
+      $stderr = STDERR
+    end
+
     let(:klass) {
       Class.new Base do
         +MethodDecorators::Deprecated
