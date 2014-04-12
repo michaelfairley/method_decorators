@@ -17,6 +17,16 @@ describe MethodDecorators::Retry do
       method.should_receive(:call).once.and_return(3)
       subject.call(method, nil).should == 3
     end
+
+    context 'when :sleep is given to #initialize' do
+      subject { MethodDecorators::Retry.new(3, :sleep => 5) }
+
+      it 'sleeps after failures before retrying' do
+        method.stub(:call) { raise ArgumentError }
+        subject.should_receive(:sleep).with(5).exactly(2).times
+        expect { subject.call(method, nil) }.to raise_error(ArgumentError)
+      end
+    end
   end
 
   describe "acceptance" do
