@@ -43,7 +43,7 @@ describe MethodDecorators::Retry do
     end
     subject { klass.new }
 
-    it "memoizes calls to the method" do
+    it 'retries calls to the method' do
       subject.do_it(1).should == 2
     end
   end
