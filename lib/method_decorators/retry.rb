@@ -5,6 +5,7 @@ module MethodDecorators
     def initialize(max, options = {})
       @max = max
       @options = options
+      @exceptions = options[:exceptions] || [StandardError]
     end
 
     def call(orig, this, *args, &blk)
@@ -12,7 +13,7 @@ module MethodDecorators
       begin
         attempts += 1
         orig.call(*args, &blk)
-      rescue
+      rescue *@exceptions
         if attempts < @max
           sleep(@options[:sleep]) if @options[:sleep]
           retry
